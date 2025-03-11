@@ -13,6 +13,7 @@ import ChatPreview from "./ChatPreview";
 import PaymentsPreview from "./PaymentsPreview";
 import ReportIssuePreview from "./ReportIssuePreview";
 import CalendarPreview from "./CalendarPreview";
+import ShareDocumentPreview from "./ShareDocumentPreview";
 
 // Define example interface
 export interface Example {
@@ -108,6 +109,16 @@ export const examples: Example[] = [
     category: "Application UI",
     gridSpan: {
       cols: 1,
+      rows: 2
+    },
+  },
+  {
+    name: "Share Document",
+    slug: "share-document",
+    component: <ShareDocumentPreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 2,
       rows: 2
     },
   },
