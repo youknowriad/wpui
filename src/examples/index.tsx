@@ -12,6 +12,7 @@ import TeamMembersPreview from "./TeamMembersPreview";
 import ChatPreview from "./ChatPreview";
 import PaymentsPreview from "./PaymentsPreview";
 import ReportIssuePreview from "./ReportIssuePreview";
+import CalendarPreview from "./CalendarPreview";
 
 // Define example interface
 export interface Example {
@@ -40,6 +41,16 @@ const ComingSoonExample = () => (
 // Define all examples
 export const examples: Example[] = [
   // Application UI
+  {
+    name: "Calendar",
+    slug: "calendar",
+    component: <CalendarPreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 1
+    },
+  },
   {
     name: "Authentication Form",
     slug: "authentication-form",
