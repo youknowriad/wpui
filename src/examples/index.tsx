@@ -14,6 +14,7 @@ import PaymentsPreview from "./PaymentsPreview";
 import ReportIssuePreview from "./ReportIssuePreview";
 import CalendarPreview from "./CalendarPreview";
 import ShareDocumentPreview from "./ShareDocumentPreview";
+import EmailPreview from "./EmailPreview";
 
 // Define example interface
 export interface Example {
@@ -165,6 +166,18 @@ export const examples: Example[] = [
     slug: "product-filters",
     component: <ComingSoonExample />,
     category: "Ecommerce",
+  },
+
+  // Email
+  {
+    name: "Email Client",
+    slug: "email-client",
+    component: <EmailPreview />,
+    category: "Email",
+    gridSpan: {
+      cols: 4,
+      rows: 4
+    },
   },
 ];
 

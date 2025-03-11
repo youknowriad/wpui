@@ -4,7 +4,6 @@ import {
   __experimentalVStack as VStack,
   Button,
   TextControl,
-  CustomSelectControl,
   SelectControl,
 } from "@wordpress/components";
 import { close } from "@wordpress/icons";
