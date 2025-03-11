@@ -2,9 +2,11 @@ import { useState } from "react";
 import {
   __experimentalVStack as VStack,
   __experimentalText as Text,
+  privateApis,
 } from "@wordpress/components";
 import { DataViews, Field, View } from "@wordpress/dataviews";
-
+import { unlock } from "../lock-unlock";
+const { Badge } = unlock(privateApis);
 interface Payment {
   id: string;
   amount: number;
@@ -75,38 +77,16 @@ const PaymentsPreview = () => {
       id: "status",
       label: "Status",
       render: ({ item }) => {
-        const statusStyles = {
-          pending: {
-            color: "#9ca3af",
-            backgroundColor: "#f3f4f6",
-          },
-          processing: {
-            color: "#2563eb",
-            backgroundColor: "#eff6ff",
-          },
-          success: {
-            color: "#16a34a",
-            backgroundColor: "#f0fdf4",
-          },
-          failed: {
-            color: "#dc2626",
-            backgroundColor: "#fef2f2",
-          },
+        const statusIntents = {
+          pending: 'default',
+          processing: 'info',
+          success: 'success',
+          failed: 'error',
         };
-
         return (
-          <div
-            style={{
-              display: "inline-flex",
-              padding: "2px 8px",
-              borderRadius: "9999px",
-              fontSize: "12px",
-              fontWeight: "500",
-              ...statusStyles[item.status],
-            }}
-          >
+          <Badge intent={statusIntents[item.status]}>
             {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
-          </div>
+          </Badge>
         );
       },
       elements: [
