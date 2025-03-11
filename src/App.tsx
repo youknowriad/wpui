@@ -1,42 +1,51 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
 
 // Import layouts
-import RootLayout from './layouts/RootLayout'
+import RootLayout from "./layouts/RootLayout";
 
 // Import pages
-import ExamplesPage from './pages/ExamplesPage'
-import ExampleWrapper from './components/ExampleWrapper'
+import CategoryPage from "./pages/CategoryPage";
+import ExamplePage from "./pages/ExamplePage";
 
 // Import examples
-import { examples } from './examples/index'
+import { getExamplesByCategory } from "./examples/index";
 
-// Create the routes
-const routes = examples.map(example => ({
-  path: `examples/${example.slug}`,
-  element: <ExampleWrapper 
-    title={example.name}
-    component={example.component} 
-  />
-}))
+// Get the first category for redirection
+const categories = getExamplesByCategory();
+const firstCategory =
+  categories.length > 0
+    ? categories[0].category.toLowerCase().replace(/\s+/g, "-")
+    : "";
 
 // Create router
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     children: [
       {
         index: true,
-        element: <ExamplesPage />,
+        element: <Navigate to={`/category/${firstCategory}`} replace />,
       },
-      ...routes
+      {
+        path: "category/:category",
+        element: <CategoryPage />,
+      },
+      {
+        path: "examples/:slug",
+        element: <ExamplePage />,
+      },
     ],
   },
-])
+]);
 
 function App() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

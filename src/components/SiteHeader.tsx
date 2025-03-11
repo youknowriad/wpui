@@ -5,8 +5,11 @@ import {
   VisuallyHidden,
 } from "@wordpress/components";
 import { Icon, wordpress } from "@wordpress/icons";
+import { getExamplesByCategory } from "../examples/index";
 
 export default function SiteHeader() {
+  const categories = getExamplesByCategory().map(cat => cat.category);
+
   return (
     <header
       style={{
@@ -38,28 +41,19 @@ export default function SiteHeader() {
         </Link>
 
         <HStack as="nav" alignment="left" spacing={4} style={{ flexGrow: 1 }}>
-          <NavLink
-            to="/"
-            style={({ isActive }) => ({
-              fontWeight: isActive ? 600 : 400,
-              textDecoration: "none",
-              color: "inherit",
-            })}
-          >
-            Examples
-          </NavLink>
-          <a
-            href="https://developer.wordpress.org/block-editor/reference-guides/components/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-              fontWeight: 400,
-            }}
-          >
-            WordPress Components
-          </a>
+          {categories.map(category => (
+            <NavLink
+              key={category}
+              to={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+              style={({ isActive }) => ({
+                fontWeight: isActive ? 600 : 400,
+                textDecoration: "none",
+                color: "inherit",
+              })}
+            >
+              {category}
+            </NavLink>
+          ))}
         </HStack>
 
         <HStack spacing={4} alignment="right">
