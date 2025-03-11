@@ -56,15 +56,25 @@ export default function ExamplesPage() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
                 gap: "1.5rem",
                 width: "100%",
                 alignItems: "start",
               }}
             >
               {category.items.map((example) => {
+                // Get grid span values (default to 1)
+                const colSpan = example.gridSpan?.cols || 1;
+                const rowSpan = example.gridSpan?.rows || 1;
+
                 return (
-                  <Card key={example.name}>
+                  <Card
+                    key={example.name}
+                    style={{
+                      gridColumn: `span ${colSpan}`,
+                      gridRow: `span ${rowSpan}`,
+                    }}
+                  >
                     <CardHeader>
                       <HStack spacing={2}>
                         <Text>{example.name}</Text>
@@ -82,9 +92,14 @@ export default function ExamplesPage() {
                       style={{
                         padding: "1rem",
                         backgroundColor: "#f9fafb",
+                        height: rowSpan > 1 ? "100%" : "auto",
+                        display: "flex",
+                        flexDirection: "column",
                       }}
                     >
-                      {example.component}
+                      <div style={{ flex: 1, overflow: "auto" }}>
+                        {example.component}
+                      </div>
                     </CardBody>
                   </Card>
                 );

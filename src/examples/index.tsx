@@ -5,10 +5,13 @@ import {
 } from "@wordpress/components";
 
 import AuthFormPreview from "./AuthFormPreview";
-import DashboardPreview from "./DashboardPreview";
 import SettingsPreview from "./SettingsPreview";
 import HeroSectionPreview from "./HeroSectionPreview";
 import ProductCardPreview from "./ProductCardPreview";
+import TeamMembersPreview from "./TeamMembersPreview";
+import ChatPreview from "./ChatPreview";
+import PaymentsPreview from "./PaymentsPreview";
+import ReportIssuePreview from "./ReportIssuePreview";
 
 // Define example interface
 export interface Example {
@@ -16,6 +19,10 @@ export interface Example {
   slug: string;
   component: ReactNode;
   category: string;
+  gridSpan?: {
+    cols?: number;
+    rows?: number;
+  };
 }
 
 // Create a coming soon component
@@ -38,18 +45,60 @@ export const examples: Example[] = [
     slug: "authentication-form",
     component: <AuthFormPreview />,
     category: "Application UI",
-  },
-  {
-    name: "Dashboard",
-    slug: "dashboard",
-    component: <DashboardPreview />,
-    category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 1
+    },
   },
   {
     name: "Settings Page",
     slug: "settings-page",
     component: <SettingsPreview />,
     category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 1
+    },
+  },
+  {
+    name: "Team Members",
+    slug: "team-members",
+    component: <TeamMembersPreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 2
+    },
+  },
+  {
+    name: "Chat",
+    slug: "chat",
+    component: <ChatPreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 3
+    },
+  },
+  {
+    name: "Payments",
+    slug: "payments",
+    component: <PaymentsPreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 2,
+      rows: 1
+    },
+  },
+  {
+    name: "Report Issue",
+    slug: "report-issue",
+    component: <ReportIssuePreview />,
+    category: "Application UI",
+    gridSpan: {
+      cols: 1,
+      rows: 2
+    },
   },
 
   // Marketing
@@ -58,6 +107,10 @@ export const examples: Example[] = [
     slug: "hero-section",
     component: <HeroSectionPreview />,
     category: "Marketing",
+    gridSpan: {
+      cols: 2,
+      rows: 1
+    },
   },
   {
     name: "Feature Grid",

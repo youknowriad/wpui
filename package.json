@@ -12,6 +12,7 @@
   "dependencies": {
     "@wordpress/base-styles": "^5.19.0",
     "@wordpress/components": "^29.5.0",
+    "@wordpress/dataviews": "^4.15.0",
     "@wordpress/element": "^6.19.0",
     "@wordpress/icons": "^10.19.0",
     "@wordpress/primitives": "^4.19.0",
