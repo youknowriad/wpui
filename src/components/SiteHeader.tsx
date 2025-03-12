@@ -82,7 +82,12 @@ export default function SiteHeader() {
               <VisuallyHidden>GitHub</VisuallyHidden>
             </Button>
           </HStack>
-          <Button variant="primary">Get Started</Button>
+          <Button
+            variant="primary"
+            href="https://wordpress.github.io/gutenberg/?path=/docs/components-introduction--docs"
+          >
+            Get Started
+          </Button>
         </HStack>
       </HStack>
     </header>
