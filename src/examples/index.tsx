@@ -10,6 +10,7 @@ import ShareDocumentPreview from "./ShareDocumentPreview";
 import EmailPreview from "./EmailPreview";
 import DashboardPreview from "./DashboardPreview";
 import MusicPlayerPreview from "./MusicPlayerPreview";
+import AuthenticationPreview from "./AuthenticationPreview";
 
 // Define example interface
 export interface Example {
@@ -145,6 +146,19 @@ export const examples: Example[] = [
     gridSpan: {
       cols: 3,
       rows: 3
+    },
+  },
+
+  // Auth
+  {
+    name: "Authentication",
+    slug: "authentication",
+    component: <AuthenticationPreview />,
+    category: "Auth",
+    hasPadding: false,
+    gridSpan: {
+      cols: 1,
+      rows: 2
     },
   },
 ];
