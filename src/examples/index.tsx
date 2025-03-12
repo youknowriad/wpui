@@ -9,6 +9,7 @@ import CalendarPreview from "./CalendarPreview";
 import ShareDocumentPreview from "./ShareDocumentPreview";
 import EmailPreview from "./EmailPreview";
 import DashboardPreview from "./DashboardPreview";
+import MusicPlayerPreview from "./MusicPlayerPreview";
 
 // Define example interface
 export interface Example {
@@ -131,6 +132,19 @@ export const examples: Example[] = [
     gridSpan: {
       cols: 3,
       rows: 4
+    },
+  },
+
+  // Media
+  {
+    name: "Music Player",
+    slug: "music-player",
+    component: <MusicPlayerPreview />,
+    category: "Media",
+    hasPadding: false,
+    gridSpan: {
+      cols: 3,
+      rows: 3
     },
   },
 ];
