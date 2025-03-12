@@ -73,18 +73,18 @@ const ChatPreview = () => {
   // Scroll to bottom of chat window
   useEffect(() => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
   return (
-    <VStack spacing={4}>
+    <VStack spacing={0}>
       <HStack
         justify="flex-start"
         spacing={4}
         style={{
-          paddingRight: "2px",
-          paddingBottom: "16px",
+          padding: "16px",
           borderBottom: "1px solid #e5e7eb",
         }}
       >
@@ -105,23 +105,25 @@ const ChatPreview = () => {
         style={{
           maxHeight: "300px",
           overflowY: "auto",
-          padding: "5px",
-          marginBottom: "10px"
+          padding: "16px",
         }}
         ref={messagesContainerRef}
+        justify="flex-start"
       >
         {messages.map((message) => (
           <HStack
             key={message.id}
             justify={message.sender === "user" ? "flex-end" : "flex-start"}
             style={{
-              minHeight: "fit-content"
+              minHeight: "fit-content",
             }}
           >
             <VStack
               style={{
                 backgroundColor:
-                  message.sender === "user" ? 'var(--wp-admin-theme-color, #3858e9)' : "#f3f4f6",
+                  message.sender === "user"
+                    ? "var(--wp-admin-theme-color, #3858e9)"
+                    : "#f3f4f6",
                 padding: "12px 16px",
                 borderRadius: "12px",
                 maxWidth: "75%",
@@ -156,9 +158,8 @@ const ChatPreview = () => {
 
       <HStack
         style={{
-          paddingTop: "16px",
+          padding: "16px",
           borderTop: "1px solid #e5e7eb",
-          flexShrink: 0,
         }}
       >
         <VStack style={{ flexGrow: 1 }}>
