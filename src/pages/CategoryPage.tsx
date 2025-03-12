@@ -119,7 +119,7 @@ function Example({ example }: { example: ExampleType }) {
           flexDirection: "column",
         }}
       >
-        <div style={{ flex: 1, overflow: "auto" }}>{example.component}</div>
+        {example.component}
       </CardBody>
     </Card>
   );
