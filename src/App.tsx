@@ -15,6 +15,9 @@ import ExamplePage from "./pages/ExamplePage";
 // Import examples
 import { getExamplesByCategory } from "./examples/index";
 
+// Import theme provider
+import { ThemeProvider } from "./context/ThemeContext";
+
 // Get the first category for redirection
 const categories = getExamplesByCategory();
 const firstCategory =
@@ -46,14 +49,16 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider
-      future={{
-        v7_startTransition: true,
-        // @ts-expect-error - This is a future flag
-        v7_relativeSplatPath: true,
-      }}
-      router={router}
-    />
+    <ThemeProvider>
+      <RouterProvider
+        future={{
+          v7_startTransition: true,
+          // @ts-expect-error - This is a future flag
+          v7_relativeSplatPath: true,
+        }}
+        router={router}
+      />
+    </ThemeProvider>
   );
 }
 
