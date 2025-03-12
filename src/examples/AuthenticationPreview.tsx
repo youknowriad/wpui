@@ -3,7 +3,6 @@ import {
   __experimentalVStack as VStack,
   __experimentalHStack as HStack,
   __experimentalText as Text,
-  __experimentalHeading as Heading,
   Button,
   CheckboxControl,
   TextControl,
@@ -50,9 +49,7 @@ const AuthenticationPreview = () => {
       >
         <div style={{ maxWidth: "300px", margin: "0 auto" }}>
           <VStack spacing={4} style={{ marginBottom: "16px" }}>
-            <Text size="title">
-              Create an account
-            </Text>
+            <Text size="title">Create an account</Text>
             <Text>Enter your information to create your account</Text>
           </VStack>
 
@@ -69,6 +66,7 @@ const AuthenticationPreview = () => {
             />
 
             <CheckboxControl
+              // @ts-expect-error The label prop can render React elements;
               label={
                 <Text>
                   I agree to the{" "}
