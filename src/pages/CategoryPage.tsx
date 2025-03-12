@@ -7,8 +7,10 @@ import {
   CardHeader,
   Button,
 } from "@wordpress/components";
-import { Link } from "react-router-dom";
 import { getExamplesByCategory } from "../examples/index";
+import { copySourceToClipboard, getSourceFileUrl } from "../utils/copy-source";
+import { useState } from "react";
+import { copy, external } from "@wordpress/icons";
 
 export default function CategoryPage() {
   const { category } = useParams<{ category: string }>();
@@ -16,6 +18,20 @@ export default function CategoryPage() {
   const categoryData = examplesByCategory.find(
     (cat) => cat.category.toLowerCase().replace(/\s+/g, "-") === category
   );
+  const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
+
+  const handleCopySource = async (sourceFile: string, slug: string) => {
+    if (sourceFile) {
+      const success = await copySourceToClipboard(sourceFile);
+      if (success) {
+        setCopiedStates({ ...copiedStates, [slug]: true });
+        // Reset after 2 seconds
+        setTimeout(() => {
+          setCopiedStates((prev) => ({ ...prev, [slug]: false }));
+        }, 2000);
+      }
+    }
+  };
 
   if (!categoryData) {
     return <div>Category not found</div>;
@@ -46,14 +62,40 @@ export default function CategoryPage() {
           >
             <CardHeader>
               <HStack spacing={2}>
-                <Text>{example.name}</Text>
+                <HStack>
+                  <Text>{example.name}</Text>
+                </HStack>
 
-                <Link
-                  to={`/examples/${example.slug}`}
-                  style={{ display: "inline-block" }}
-                >
-                  <Button variant="link">View Example</Button>
-                </Link>
+                <HStack justify="flex-end">
+                  {example.sourceFile && (
+                    <Button
+                      variant="link"
+                      onClick={() => {
+                        window.open(
+                          getSourceFileUrl(example.sourceFile!),
+                          "_blank"
+                        );
+                      }}
+                      style={{ display: "inline-block" }}
+                      label="View Source"
+                      icon={external}
+                    />
+                  )}
+
+                  {example.sourceFile && (
+                    <Button
+                      variant="link"
+                      onClick={() =>
+                        handleCopySource(example.sourceFile!, example.slug)
+                      }
+                      style={{ display: "inline-block" }}
+                      label={
+                        copiedStates[example.slug] ? "Copied!" : "Copy Source"
+                      }
+                      icon={copy}
+                    />
+                  )}
+                </HStack>
               </HStack>
             </CardHeader>
 

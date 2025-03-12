@@ -23,6 +23,7 @@ export interface Example {
     cols?: number;
     rows?: number;
   };
+  sourceFile?: string;
 }
 
 // Define all examples
@@ -38,6 +39,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 1
     },
+    sourceFile: "CalendarPreview.tsx",
   },
   {
     name: "Authentication Form",
@@ -48,6 +50,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 1
     },
+    sourceFile: "AuthFormPreview.tsx",
   },
   {
     name: "Settings Page",
@@ -58,6 +61,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 1
     },
+    sourceFile: "SettingsPreview.tsx",
   },
   {
     name: "Team Members",
@@ -68,6 +72,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 2
     },
+    sourceFile: "TeamMembersPreview.tsx",
   },
   {
     name: "Chat",
@@ -78,6 +83,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 3
     },
+    sourceFile: "ChatPreview.tsx",
   },
   {
     name: "Payments",
@@ -88,6 +94,7 @@ export const examples: Example[] = [
       cols: 2,
       rows: 1
     },
+    sourceFile: "PaymentsPreview.tsx",
   },
   {
     name: "Report Issue",
@@ -98,6 +105,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 2
     },
+    sourceFile: "ReportIssuePreview.tsx",
   },
   {
     name: "Share Document",
@@ -108,6 +116,7 @@ export const examples: Example[] = [
       cols: 2,
       rows: 2
     },
+    sourceFile: "ShareDocumentPreview.tsx",
   },
 
   // Email
@@ -121,6 +130,7 @@ export const examples: Example[] = [
       cols: 4,
       rows: 4
     },
+    sourceFile: "EmailPreview.tsx",
   },
 
   // Dashboard
@@ -134,6 +144,7 @@ export const examples: Example[] = [
       cols: 3,
       rows: 4
     },
+    sourceFile: "DashboardPreview.tsx",
   },
 
   // Media
@@ -147,6 +158,7 @@ export const examples: Example[] = [
       cols: 3,
       rows: 3
     },
+    sourceFile: "MusicPlayerPreview.tsx",
   },
 
   // Auth
@@ -160,6 +172,7 @@ export const examples: Example[] = [
       cols: 1,
       rows: 2
     },
+    sourceFile: "AuthenticationPreview.tsx",
   },
 ];
 
@@ -171,9 +184,4 @@ export const getExamplesByCategory = () => {
     category,
     items: examples.filter((example) => example.category === category),
   }));
-};
-
-// Helper function to find an example by slug
-export const getExampleBySlug = (slug: string) => {
-  return examples.find((example) => example.slug === slug);
 };

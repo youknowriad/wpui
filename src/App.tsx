@@ -10,7 +10,6 @@ import RootLayout from "./layouts/RootLayout";
 
 // Import pages
 import CategoryPage from "./pages/CategoryPage";
-import ExamplePage from "./pages/ExamplePage";
 
 // Import examples
 import { getExamplesByCategory } from "./examples/index";
@@ -38,10 +37,6 @@ const router = createBrowserRouter([
       {
         path: "category/:category",
         element: <CategoryPage />,
-      },
-      {
-        path: "examples/:slug",
-        element: <ExamplePage />,
       },
     ],
   },
