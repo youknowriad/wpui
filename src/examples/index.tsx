@@ -84,6 +84,7 @@ export const examples: Example[] = [
       rows: 3
     },
     sourceFile: "ChatPreview.tsx",
+    hasPadding: false
   },
   {
     name: "Payments",

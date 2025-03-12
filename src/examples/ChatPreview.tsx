@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   __experimentalText as Text,
   __experimentalHStack as HStack,
@@ -9,6 +9,7 @@ import {
 import { arrowRight, moreVertical } from "@wordpress/icons";
 
 const ChatPreview = () => {
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -69,12 +70,23 @@ const ChatPreview = () => {
     }
   };
 
+  // Scroll to bottom of chat window
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
-    <VStack spacing={4}>
+    <VStack spacing={0}>
       <HStack
         justify="flex-start"
         spacing={4}
-        style={{ paddingBottom: "16px", borderBottom: "1px solid #e5e7eb" }}
+        style={{
+          padding: "16px",
+          borderBottom: "1px solid #e5e7eb",
+        }}
       >
         <img
           src="https://i.pravatar.cc/150?img=8"
@@ -88,16 +100,30 @@ const ChatPreview = () => {
         <Button icon={moreVertical} variant="tertiary" size="compact" />
       </HStack>
 
-      <VStack spacing={3}>
+      <VStack
+        spacing={3}
+        style={{
+          maxHeight: "300px",
+          overflowY: "auto",
+          padding: "16px",
+        }}
+        ref={messagesContainerRef}
+        justify="flex-start"
+      >
         {messages.map((message) => (
           <HStack
             key={message.id}
             justify={message.sender === "user" ? "flex-end" : "flex-start"}
+            style={{
+              minHeight: "fit-content",
+            }}
           >
             <VStack
               style={{
                 backgroundColor:
-                  message.sender === "user" ? 'var(--wp-admin-theme-color, #3858e9)' : "#f3f4f6",
+                  message.sender === "user"
+                    ? "var(--wp-admin-theme-color, #3858e9)"
+                    : "#f3f4f6",
                 padding: "12px 16px",
                 borderRadius: "12px",
                 maxWidth: "75%",
@@ -132,9 +158,8 @@ const ChatPreview = () => {
 
       <HStack
         style={{
-          paddingTop: "16px",
+          padding: "16px",
           borderTop: "1px solid #e5e7eb",
-          flexShrink: 0,
         }}
       >
         <VStack style={{ flexGrow: 1 }}>
