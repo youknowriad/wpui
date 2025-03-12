@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   __experimentalText as Text,
   __experimentalHStack as HStack,
@@ -9,6 +9,7 @@ import {
 import { arrowRight, moreVertical } from "@wordpress/icons";
 
 const ChatPreview = () => {
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -69,6 +70,13 @@ const ChatPreview = () => {
     }
   };
 
+  // Scroll to bottom of chat window
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <VStack spacing={4}>
       <HStack
@@ -88,11 +96,23 @@ const ChatPreview = () => {
         <Button icon={moreVertical} variant="tertiary" size="compact" />
       </HStack>
 
-      <VStack spacing={3}>
+      <VStack
+        spacing={3}
+        style={{
+          maxHeight: "300px",
+          overflowY: "auto",
+          padding: "5px",
+          marginBottom: "10px"
+        }}
+        ref={messagesContainerRef}
+      >
         {messages.map((message) => (
           <HStack
             key={message.id}
             justify={message.sender === "user" ? "flex-end" : "flex-start"}
+            style={{
+              minHeight: "fit-content"
+            }}
           >
             <VStack
               style={{
