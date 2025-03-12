@@ -82,7 +82,11 @@ const ChatPreview = () => {
       <HStack
         justify="flex-start"
         spacing={4}
-        style={{ paddingBottom: "16px", borderBottom: "1px solid #e5e7eb" }}
+        style={{
+          paddingRight: "2px",
+          paddingBottom: "16px",
+          borderBottom: "1px solid #e5e7eb",
+        }}
       >
         <img
           src="https://i.pravatar.cc/150?img=8"
