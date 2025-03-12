@@ -24,7 +24,6 @@ import {
   people,
   chevronDown,
   chevronUp,
-  formatListBullets,
   close,
   commentReplyLink,
 } from "@wordpress/icons";
@@ -32,6 +31,7 @@ import { MouseEvent, useState } from "react";
 
 const EmailPreview = () => {
   const [selectedFolder, setSelectedFolder] = useState("inbox");
+  const [selectedLabel, setSelectedLabel] = useState("personal");
   const [selectedEmail, setSelectedEmail] = useState(2);
   const [emails, setEmails] = useState([
     {
@@ -97,8 +97,22 @@ const EmailPreview = () => {
     { label: "John Doe", value: "john" },
   ];
 
+  const folders = [
+    { id: 1, name: "Inbox", icon: inbox },
+    { id: 2, name: "Drafts", icon: drafts },
+    { id: 3, name: "Sent", icon: send },
+    { id: 4, name: "Junk", icon: warning },
+    { id: 5, name: "Trash", icon: trash },
+  ];
+
+  const labels = [
+    { id: 1, name: "Personal" },
+    { id: 2, name: "Work" },
+    { id: 3, name: "Important" },
+  ];
+
   const [selectedUser, setSelectedUser] = useState("ryan");
-  const [showLabels, setShowLabels] = useState(true);
+
   const [showAccounts, setShowAccounts] = useState(false);
 
   const toggleStar = (id: number) => {
@@ -165,56 +179,38 @@ const EmailPreview = () => {
           </Button>
 
           {/* Folders */}
-          <VStack spacing={1} style={{ width: "100%" }}>
-            <Button
-              icon={inbox}
-              variant={selectedFolder === "inbox" ? "secondary" : "tertiary"}
+          <VStack spacing={4}>
+            <Text
+              size="11"
+              weight="600"
               style={{
-                justifyContent: "flex-start",
-                width: "100%",
-                fontWeight: selectedFolder === "inbox" ? "600" : "normal",
+                textTransform: "uppercase",
+                color: "#6b7280",
+                paddingLeft: "12px",
               }}
-              onClick={() => setSelectedFolder("inbox")}
-              size="compact"
             >
-              Inbox
-            </Button>
-            <Button
-              icon={drafts}
-              variant="tertiary"
-              style={{ justifyContent: "flex-start", width: "100%" }}
-              onClick={() => setSelectedFolder("drafts")}
-              size="compact"
-            >
-              Drafts
-            </Button>
-            <Button
-              icon={send}
-              variant="tertiary"
-              style={{ justifyContent: "flex-start", width: "100%" }}
-              onClick={() => setSelectedFolder("sent")}
-              size="compact"
-            >
-              Sent
-            </Button>
-            <Button
-              icon={warning}
-              variant="tertiary"
-              style={{ justifyContent: "flex-start", width: "100%" }}
-              onClick={() => setSelectedFolder("junk")}
-              size="compact"
-            >
-              Junk
-            </Button>
-            <Button
-              icon={trash}
-              variant="tertiary"
-              style={{ justifyContent: "flex-start", width: "100%" }}
-              onClick={() => setSelectedFolder("trash")}
-              size="compact"
-            >
-              Trash
-            </Button>
+              Folders
+            </Text>
+
+            <VStack spacing={0}>
+              {folders.map((folder) => (
+                <Button
+                  key={folder.id}
+                  variant="tertiary"
+                  __next40pxDefaultSize
+                  onClick={() => setSelectedFolder(folder.name)}
+                  style={{
+                    fontWeight:
+                      selectedFolder === folder.name ? "600" : "normal",
+                  }}
+                >
+                  <HStack justify="flex-start">
+                    <Icon icon={folder.icon} style={{ fill: "inherit" }} />
+                    <Text size="13">{folder.name}</Text>
+                  </HStack>
+                </Button>
+              ))}
+            </VStack>
           </VStack>
         </VStack>
 
@@ -224,32 +220,33 @@ const EmailPreview = () => {
           spacing={4}
           style={{ padding: "16px", borderBottom: "1px solid #e5e7eb" }}
         >
-          <Button
-            variant="tertiary"
-            onClick={() => setShowLabels(!showLabels)}
-            icon={showLabels ? chevronDown : chevronUp}
-            iconPosition="right"
-            __next40pxDefaultSize
+          <Text
+            size="11"
+            weight="600"
+            style={{
+              textTransform: "uppercase",
+              color: "#6b7280",
+              paddingLeft: "12px",
+            }}
           >
-            <HStack spacing={2} justify="flex-start">
-              <Icon icon={formatListBullets} />
-              <Text>Labels</Text>
-            </HStack>
-          </Button>
+            Labels
+          </Text>
 
-          {showLabels && (
-            <VStack spacing={1}>
-              <Button variant="tertiary" size="compact">
-                Personal
+          <VStack spacing={0}>
+            {labels.map((label) => (
+              <Button
+                key={label.id}
+                variant="tertiary"
+                __next40pxDefaultSize
+                onClick={() => setSelectedLabel(label.name)}
+                style={{
+                  fontWeight: selectedLabel === label.name ? "600" : "normal",
+                }}
+              >
+                <Text size="13">{label.name}</Text>
               </Button>
-              <Button variant="tertiary" size="compact">
-                Work
-              </Button>
-              <Button variant="tertiary" size="compact">
-                Important
-              </Button>
-            </VStack>
-          )}
+            ))}
+          </VStack>
         </VStack>
 
         {/* Accounts section */}
@@ -270,10 +267,10 @@ const EmailPreview = () => {
           {showAccounts && (
             <VStack spacing={1}>
               <Button variant="tertiary" size="compact">
-                Personal
+                <Text>Personal</Text>
               </Button>
               <Button variant="tertiary" size="compact">
-                Work
+                <Text>Work</Text>
               </Button>
             </VStack>
           )}
