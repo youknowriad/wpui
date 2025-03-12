@@ -97,7 +97,7 @@ const ChatPreview = () => {
             <VStack
               style={{
                 backgroundColor:
-                  message.sender === "user" ? "#2563eb" : "#f3f4f6",
+                  message.sender === "user" ? 'var(--wp-admin-theme-color, #3858e9)' : "#f3f4f6",
                 padding: "12px 16px",
                 borderRadius: "12px",
                 maxWidth: "75%",

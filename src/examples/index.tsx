@@ -16,6 +16,7 @@ export interface Example {
   slug: string;
   component: ReactNode;
   category: string;
+  hasPadding?: boolean;
   gridSpan?: {
     cols?: number;
     rows?: number;
@@ -113,6 +114,7 @@ export const examples: Example[] = [
     slug: "email-client",
     component: <EmailPreview />,
     category: "Email",
+    hasPadding: false,
     gridSpan: {
       cols: 4,
       rows: 4
@@ -125,6 +127,7 @@ export const examples: Example[] = [
     slug: "admin-dashboard",
     component: <DashboardPreview />,
     category: "Dashboard",
+    hasPadding: false,
     gridSpan: {
       cols: 3,
       rows: 4

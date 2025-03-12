@@ -36,12 +36,12 @@ export default function ExamplePage() {
       </VStack>
 
       <Card>
-        <CardBody style={{ padding: "2rem" }}>
+        <CardBody style={{ padding: "0" }}>
           <div
             style={{
               backgroundColor: "#f9fafb",
               borderRadius: "0.375rem",
-              padding: "2rem",
+              padding: example.hasPadding !== false ? "1rem" : '0'
             }}
           >
             {example.component}
