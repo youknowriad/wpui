@@ -12,6 +12,7 @@ export default function SettingsPreview() {
         help="Receive email notifications about activity"
         checked={true}
         onChange={() => {}}
+        __nextHasNoMarginBottom
       />
 
       <ToggleControl
@@ -19,6 +20,7 @@ export default function SettingsPreview() {
         help="Increase account security with 2FA"
         checked={false}
         onChange={() => {}}
+        __nextHasNoMarginBottom
       />
 
       <SelectControl
@@ -31,6 +33,7 @@ export default function SettingsPreview() {
         ]}
         onChange={() => {}}
         __next40pxDefaultSize
+        __nextHasNoMarginBottom
       />
     </VStack>
   );

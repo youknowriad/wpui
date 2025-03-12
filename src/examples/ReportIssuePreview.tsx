@@ -73,6 +73,7 @@ const ReportIssuePreview = () => {
           placeholder="Provide details about the issue..."
           value={data.description}
           onChange={(updated) => onChange({ description: updated })}
+          __nextHasNoMarginBottom
         />
       ),
     },
@@ -84,6 +85,7 @@ const ReportIssuePreview = () => {
           label="Reproducible"
           checked={data.reproduce}
           onChange={(updated) => onChange({ reproduce: updated })}
+          __nextHasNoMarginBottom
         />
       ),
       description: "Can you consistently reproduce this issue?",

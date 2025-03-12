@@ -491,6 +491,7 @@ const EmailPreview = () => {
               value=""
               placeholder="Reply..."
               onChange={() => {}}
+              __nextHasNoMarginBottom
             />
             <HStack alignment="right">
               <Button

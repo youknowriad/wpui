@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import 'chart.js/auto'; 
 
 // Import WordPress styles
 import '@wordpress/components/build-style/style.css'

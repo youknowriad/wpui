@@ -19,6 +19,7 @@ export default function AuthFormPreview() {
           onChange={setEmail}
           type="email"
           __next40pxDefaultSize
+          __nextHasNoMarginBottom
         />
 
         <TextControl
@@ -27,6 +28,7 @@ export default function AuthFormPreview() {
           onChange={setPassword}
           type="password"
           __next40pxDefaultSize
+          __nextHasNoMarginBottom
         />
 
         <HStack justify="space-between">
