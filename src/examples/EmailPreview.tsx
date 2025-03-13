@@ -1,5 +1,6 @@
 import {
   __experimentalText as Text,
+  __experimentalTruncate as Truncate,
   __experimentalHStack as HStack,
   __experimentalVStack as VStack,
   Button,
@@ -142,8 +143,6 @@ const EmailPreview = () => {
         style={{
           width: "300px",
           borderRight: "1px solid #e5e7eb",
-          minHeight: "600px",
-          backgroundColor: "#f9fafb",
           flexShrink: 0,
         }}
       >
@@ -155,7 +154,8 @@ const EmailPreview = () => {
           }}
         >
           <SelectControl
-            label=""
+            label="Switch agent"
+            hideLabelFromVision
             value={selectedUser}
             onChange={setSelectedUser}
             options={users}
@@ -169,12 +169,7 @@ const EmailPreview = () => {
           spacing={4}
           style={{ padding: "16px", borderBottom: "1px solid #e5e7eb" }}
         >
-          <Button
-            variant="primary"
-            style={{ width: "100%" }}
-            __next40pxDefaultSize
-            onClick={() => {}}
-          >
+          <Button variant="primary" __next40pxDefaultSize onClick={() => {}}>
             New message
           </Button>
 
@@ -183,9 +178,9 @@ const EmailPreview = () => {
             <Text
               size="11"
               weight="600"
+              variant="muted"
               style={{
                 textTransform: "uppercase",
-                color: "#6b7280",
                 paddingLeft: "12px",
               }}
             >
@@ -223,9 +218,9 @@ const EmailPreview = () => {
           <Text
             size="11"
             weight="600"
+            variant="muted"
             style={{
               textTransform: "uppercase",
-              color: "#6b7280",
               paddingLeft: "12px",
             }}
           >
@@ -335,6 +330,7 @@ const EmailPreview = () => {
               <CardBody style={{ padding: "16px" }}>
                 <HStack spacing={3}>
                   <Button
+                    label={`Star email: ${email.subject}`}
                     icon={email.starred ? starFilled : starEmpty}
                     variant="tertiary"
                     size="small"
@@ -350,7 +346,7 @@ const EmailPreview = () => {
                       <Text weight={email.read ? "400" : "600"}>
                         {email.sender}
                       </Text>
-                      <Text size="caption" style={{ color: "#6b7280" }}>
+                      <Text size="caption" variant="muted">
                         {email.date}
                       </Text>
                     </HStack>
@@ -359,18 +355,8 @@ const EmailPreview = () => {
                       {email.subject}
                     </Text>
 
-                    <Text
-                      size="small"
-                      style={{
-                        color: "#6b7280",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 1,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {email.message}
+                    <Text size="small" variant="muted">
+                      <Truncate numberOfLines={1}>{email.message}</Truncate>
                     </Text>
                   </VStack>
                 </HStack>
@@ -441,16 +427,17 @@ const EmailPreview = () => {
 
             <VStack spacing={0} style={{ flexGrow: 1 }}>
               <Text>{selectedEmailData.sender}</Text>
-              <Text size="small" style={{ color: "#6b7280" }}>
+              <Text size="small" variant="muted">
                 {selectedEmailData.email}
               </Text>
             </VStack>
 
             <VStack spacing={2} alignment="right">
-              <Text size="small" style={{ color: "#6b7280" }}>
+              <Text size="small" variant="muted">
                 {selectedEmailData.date}
               </Text>
               <Button
+                label={`Star email: ${selectedEmailData.subject}`}
                 icon={selectedEmailData.starred ? starFilled : starEmpty}
                 variant="tertiary"
                 size="small"
@@ -466,17 +453,19 @@ const EmailPreview = () => {
             spacing={4}
             style={{ padding: "16px", borderBottom: "1px solid #e5e7eb" }}
           >
-            <Heading level={3}>{selectedEmailData.subject}</Heading>
+            <Heading level={2} size="title">
+              {selectedEmailData.subject}
+            </Heading>
 
-            <div
+            <Text
+              size="inherit"
+              lineHeight={1.6}
               style={{
                 whiteSpace: "pre-line",
-                lineHeight: "1.6",
-                color: "#374151",
               }}
             >
               {selectedEmailData.message}
-            </div>
+            </Text>
           </VStack>
 
           <VStack
