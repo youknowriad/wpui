@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  __experimentalHeading as Heading,
   __experimentalVStack as VStack,
   __experimentalHStack as HStack,
   __experimentalText as Text,
@@ -210,14 +211,16 @@ export default function DashboardPreview() {
       >
         <Button style={{ fontWeight: "bold" }}>WPUI</Button>
 
-        <SelectControl
-          label=""
-          onChange={() => {}}
-          options={users}
-          __nextHasNoMarginBottom
-          __next40pxDefaultSize
-          style={{ minWidth: 200 }}
-        />
+        <HStack style={{ flexShrink: 0, width: "auto" }}>
+          <SelectControl
+            label="Switch user"
+            hideLabelFromVision
+            onChange={() => {}}
+            options={users}
+            __nextHasNoMarginBottom
+            __next40pxDefaultSize
+          />
+        </HStack>
 
         <HStack justify="flex-start" style={{ flexGrow: 1 }}>
           <Button variant="tertiary" onClick={() => {}}>
@@ -298,7 +301,7 @@ export default function DashboardPreview() {
       {/* Main content */}
       <VStack spacing={4} style={{ padding: "16px" }}>
         <HStack justify="space-between" alignment="center">
-          <Text size="largeTitle">Dashboard</Text>
+          <Heading level={1} size="largeTitle">Dashboard</Heading>
           <HStack justify="flex-end" spacing={2}>
             <Button icon={download} variant="secondary" __next40pxDefaultSize>
               Download
@@ -361,7 +364,7 @@ export default function DashboardPreview() {
           <Card>
             <CardHeader>
               <HStack spacing={2} justify="space-between">
-                <Text>Monthly Traffic</Text>
+                <Text as="h2">Monthly Traffic</Text>
                 <DropdownMenu
                   icon={moreVertical}
                   label="More options"
@@ -406,7 +409,7 @@ export default function DashboardPreview() {
           <Card>
             <CardHeader>
               <HStack spacing={2} justify="space-between">
-                <Text>Weekly Activity</Text>
+                <Text as="h2">Weekly Activity</Text>
                 <DropdownMenu
                   icon={moreVertical}
                   label="More options"
@@ -453,7 +456,7 @@ export default function DashboardPreview() {
         <Card>
           <CardHeader>
             <HStack spacing={2} justify="space-between">
-              <Text>Recent Purchases</Text>
+              <Text as="h2">Recent Purchases</Text>
               <DropdownMenu
                 icon={moreVertical}
                 label="More options"
@@ -510,7 +513,7 @@ function StatCard({
     <Card>
       <CardBody>
         <VStack spacing={4}>
-          <Text>{title}</Text>
+          <Text as="h2">{title}</Text>
           <VStack spacing={0}>
             <HStack spacing={2} justify="flex-start">
               <Text size="title">{value}</Text>
