@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  __experimentalHeading as Heading,
   __experimentalVStack as VStack,
   __experimentalHStack as HStack,
   __experimentalText as Text,
@@ -48,12 +49,14 @@ const AuthenticationPreview = () => {
         alignment="center"
       >
         <div style={{ maxWidth: "300px", margin: "0 auto" }}>
-          <VStack spacing={4} style={{ marginBottom: "16px" }}>
-            <Text size="title">Create an account</Text>
+          <VStack spacing={2} style={{ marginBottom: "16px" }}>
+            <Heading level={1} size="title">
+              Create an account
+            </Heading>
             <Text>Enter your information to create your account</Text>
           </VStack>
 
-          <VStack spacing={4} style={{ width: "100%" }}>
+          <VStack spacing={4}>
             <TextControl
               label="Email"
               value={email}
@@ -69,22 +72,8 @@ const AuthenticationPreview = () => {
               // @ts-expect-error The label prop can render React elements;
               label={
                 <Text>
-                  I agree to the{" "}
-                  <Button
-                    variant="link"
-                    __next40pxDefaultSize
-                    style={{ padding: 0 }}
-                  >
-                    Terms of Service
-                  </Button>{" "}
-                  and{" "}
-                  <Button
-                    variant="link"
-                    __next40pxDefaultSize
-                    style={{ padding: 0 }}
-                  >
-                    Privacy Policy
-                  </Button>
+                  I agree to the <a href="#">Terms of Service</a> and{" "}
+                  <a href="#">Privacy Policy</a>
                 </Text>
               }
               checked={rememberMe}
@@ -105,7 +94,6 @@ const AuthenticationPreview = () => {
               <HStack
                 style={{
                   position: "relative",
-                  width: "100%",
                   marginTop: "8px",
                   marginBottom: "8px",
                 }}
@@ -149,14 +137,9 @@ const AuthenticationPreview = () => {
             </VStack>
 
             <HStack justify="center" spacing={1}>
-              <Text style={{ color: "#6b7280" }}>Already have an account?</Text>
-              <Button
-                variant="link"
-                __next40pxDefaultSize
-                style={{ padding: 0 }}
-              >
-                Login
-              </Button>
+              <Text variant="muted">
+                Already have an account? <a href="#">Login</a>
+              </Text>
             </HStack>
           </VStack>
         </div>
