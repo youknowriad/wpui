@@ -1,4 +1,5 @@
 import {
+  __experimentalHeading as Heading,
   __experimentalText as Text,
   __experimentalHStack as HStack,
   __experimentalVStack as VStack,
@@ -46,28 +47,30 @@ const TeamMembersPreview = () => {
   ];
 
   return (
-    <VStack spacing={4}>
+    <VStack spacing={0}>
       <HStack
         style={{
           justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
+          padding: "16px",
         }}
       >
-        <Text size="title">Team Members</Text>
+        <Heading level={2} size="title">
+          Team Members
+        </Heading>
         <Button variant="primary" __next40pxDefaultSize>
           Add Member
         </Button>
       </HStack>
 
-      <VStack spacing={4}>
+      <VStack spacing={0}>
         {teamMembers.map((member) => (
           <div
             key={member.id}
             style={{
-              padding: "12px 0",
-              borderBottom:
-                member.id !== teamMembers.length ? "1px solid #e5e7eb" : "none",
+              padding: "16px",
+              borderTop: "1px solid #e5e7eb",
             }}
           >
             <HStack spacing={4} justify="flex-start" alignment="top">
@@ -81,10 +84,10 @@ const TeamMembersPreview = () => {
               />
               <VStack spacing={1} style={{ flexGrow: 1 }}>
                 <Text size="body">{member.name}</Text>
-                <Text size="small" style={{ color: "#6b7280" }}>
+                <Text size="small" variant="muted">
                   {member.role}
                 </Text>
-                <Text size="caption" style={{ color: "#6b7280" }}>
+                <Text size="caption" variant="muted">
                   {member.email}
                 </Text>
               </VStack>

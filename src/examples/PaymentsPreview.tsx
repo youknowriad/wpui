@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   __experimentalVStack as VStack,
   __experimentalText as Text,
+  __experimentalHeading as Heading,
   privateApis,
 } from "@wordpress/components";
 import { DataViews, Field, View } from "@wordpress/dataviews";
@@ -78,10 +79,10 @@ const PaymentsPreview = () => {
       label: "Status",
       render: ({ item }) => {
         const statusIntents = {
-          pending: 'default',
-          processing: 'info',
-          success: 'success',
-          failed: 'error',
+          pending: "default",
+          processing: "info",
+          success: "success",
+          failed: "error",
         };
         return (
           <Badge intent={statusIntents[item.status]}>
@@ -114,7 +115,9 @@ const PaymentsPreview = () => {
   return (
     <VStack spacing={4}>
       <VStack spacing={2}>
-        <Text size="title">Payments</Text>
+        <Heading level={2} size="title">
+          Payments
+        </Heading>
         <Text size="body">Manage your payments (using DataViews)</Text>
       </VStack>
 

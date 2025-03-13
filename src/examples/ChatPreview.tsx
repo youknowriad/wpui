@@ -95,9 +95,9 @@ const ChatPreview = () => {
         />
         <VStack spacing={0} style={{ flexGrow: "1" }}>
           <Text>Support Team</Text>
-          <Text style={{ color: "#6b7280" }}>Online</Text>
+          <Text variant="muted">Online</Text>
         </VStack>
-        <Button icon={moreVertical} variant="tertiary" size="compact" />
+        <Button icon={moreVertical} variant="tertiary" size="compact" label="Settings" />
       </HStack>
 
       <VStack
@@ -178,6 +178,7 @@ const ChatPreview = () => {
           icon={arrowRight}
           disabled={!newMessage.trim()}
           __next40pxDefaultSize
+          label="Send"
         />
       </HStack>
     </VStack>

@@ -1,4 +1,5 @@
 import {
+  __experimentalHeading as Heading,
   __experimentalText as Text,
   __experimentalHStack as HStack,
   __experimentalVStack as VStack,
@@ -34,34 +35,37 @@ const ShareDocumentPreview = () => {
   ];
 
   return (
-    <VStack spacing={4}>
-      <VStack spacing={1}>
-        <Text size="large">Share this document</Text>
-        <Text size="small" style={{ color: "#6b7280" }}>
-          Anyone with the link can view and edit.
-        </Text>
+    <VStack spacing={0}>
+      <VStack
+        spacing={4}
+        style={{ padding: "16px", borderBottom: "1px solid #e5e7eb" }}
+      >
+        <VStack>
+          <Heading size="title" level={2}>
+            Share this document
+          </Heading>
+          <Text size="small">Anyone with the link can view and edit.</Text>
+        </VStack>
+        <HStack spacing={3}>
+          <VStack style={{ flexGrow: 1 }}>
+            <TextControl
+              label="Link to document"
+              hideLabelFromVision
+              value="http://example.com/link/to/document"
+              onChange={() => {}}
+              __next40pxDefaultSize
+              __nextHasNoMarginBottom
+            />
+          </VStack>
+
+          <Button variant="primary" onClick={() => {}} __next40pxDefaultSize>
+            Copy Link
+          </Button>
+        </HStack>
       </VStack>
 
-      <HStack
-        spacing={3}
-        style={{ borderBottom: "1px solid #e5e7eb", paddingBottom: "16px" }}
-      >
-        <VStack style={{ flexGrow: 1 }}>
-          <TextControl
-            value="http://example.com/link/to/document"
-            onChange={() => {}}
-            __next40pxDefaultSize
-            __nextHasNoMarginBottom
-          />
-        </VStack>
-
-        <Button variant="primary" onClick={() => {}} __next40pxDefaultSize>
-          Copy Link
-        </Button>
-      </HStack>
-
-      <VStack spacing={4} style={{ width: "100%" }}>
-        <Text style={{ color: "#6b7280" }}>People with access</Text>
+      <VStack spacing={4} style={{ padding: "16px" }}>
+        <Text variant="muted">People with access</Text>
 
         {sharedWith.map((user) => (
           <HStack
@@ -81,11 +85,13 @@ const ShareDocumentPreview = () => {
 
             <VStack spacing={0} style={{ flexGrow: 1 }}>
               <Text>{user.name}</Text>
-              <Text size="small" style={{ color: "#6b7280" }}>
+              <Text size="small" variant="muted">
                 {user.email}
               </Text>
             </VStack>
             <SelectControl
+              label="Access for {user.name}"
+              hideLabelFromVision
               value={user.access}
               options={[
                 { value: "edit", label: "Edit" },

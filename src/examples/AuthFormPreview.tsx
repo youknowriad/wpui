@@ -37,7 +37,6 @@ export default function AuthFormPreview() {
           </Button>
           <Button
             variant="primary"
-            style={{ marginTop: "0.5rem" }}
             __next40pxDefaultSize
           >
             Sign In

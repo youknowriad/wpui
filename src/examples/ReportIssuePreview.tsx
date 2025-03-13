@@ -1,4 +1,5 @@
 import {
+  __experimentalHeading as Heading,
   __experimentalVStack as VStack,
   __experimentalHStack as HStack,
   __experimentalText as Text,
@@ -95,7 +96,9 @@ const ReportIssuePreview = () => {
   return (
     <VStack spacing={4}>
       <VStack spacing={2}>
-        <Text size="title">Report an Issue</Text>
+        <Heading level={2} size="title">
+          Report an Issue
+        </Heading>
         <Text>What area are you having problems with? (Using DataForm)</Text>
       </VStack>
 
@@ -112,11 +115,7 @@ const ReportIssuePreview = () => {
         <Button variant="secondary" __next40pxDefaultSize>
           Cancel
         </Button>
-        <Button
-          variant="primary"
-          style={{ marginTop: "0.5rem" }}
-          __next40pxDefaultSize
-        >
+        <Button variant="primary" __next40pxDefaultSize>
           Submit
         </Button>
       </HStack>

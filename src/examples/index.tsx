@@ -70,9 +70,10 @@ export const examples: Example[] = [
     category: "Widgets",
     gridSpan: {
       cols: 1,
-      rows: 2
+      rows: 3,
     },
     sourceFile: "TeamMembersPreview.tsx",
+    hasPadding: false,
   },
   {
     name: "Chat",
@@ -81,7 +82,7 @@ export const examples: Example[] = [
     category: "Widgets",
     gridSpan: {
       cols: 1,
-      rows: 3
+      rows: 2
     },
     sourceFile: "ChatPreview.tsx",
     hasPadding: false
@@ -93,7 +94,7 @@ export const examples: Example[] = [
     category: "Widgets",
     gridSpan: {
       cols: 2,
-      rows: 1
+      rows: 2
     },
     sourceFile: "PaymentsPreview.tsx",
   },
@@ -118,6 +119,7 @@ export const examples: Example[] = [
       rows: 2
     },
     sourceFile: "ShareDocumentPreview.tsx",
+    hasPadding: false
   },
 
   // Email
