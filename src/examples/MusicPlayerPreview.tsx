@@ -1,5 +1,6 @@
 import { MouseEvent, useState } from "react";
 import {
+  __experimentalHeading as Heading,
   __experimentalVStack as VStack,
   __experimentalHStack as HStack,
   __experimentalText as Text,
@@ -225,9 +226,9 @@ const MusicPlayerPreview = () => {
             <Text
               size="11"
               weight="600"
+              variant="muted"
               style={{
                 textTransform: "uppercase",
-                color: "#6b7280",
                 paddingLeft: "12px",
               }}
             >
@@ -267,9 +268,9 @@ const MusicPlayerPreview = () => {
             <Text
               size="11"
               weight="600"
+              variant="muted"
               style={{
                 textTransform: "uppercase",
-                color: "#6b7280",
                 paddingLeft: "12px",
               }}
             >
@@ -331,7 +332,7 @@ const MusicPlayerPreview = () => {
           {/* Main Content Area */}
           <VStack spacing={8} style={{ padding: "16px 32px" }}>
             <VStack spacing={1}>
-              <Text size="title">Featured Albums</Text>
+              <Heading size="title" level={2}>Featured Albums</Heading>
               <Text>Top picks for you. Updated daily.</Text>
             </VStack>
 
@@ -348,15 +349,20 @@ const MusicPlayerPreview = () => {
                     style={{
                       height: "300px",
                       backgroundColor: album.coverColor,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      position: "relative",
                       borderRadius: "4px",
-                      backgroundImage: `url(${album.cover})`,
-                      backgroundSize: "cover",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    <img
+                      src={album.cover}
+                      alt={`${album.title} cover`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
                   <VStack spacing={0} style={{ flexGrow: 1 }}>
                     <Text weight="600">{album.title}</Text>
                     <Text size="small" variant="muted">
@@ -413,27 +419,29 @@ const MusicPlayerPreview = () => {
                   }}
                   onClick={() => setSelectedSong(song.id)}
                 >
-                  <Text style={{ width: "40px", color: "#6b7280" }}>
+                  <Text variant="muted" style={{ width: "40px" }}>
                     {index + 1}
                   </Text>
                   <VStack spacing={0} style={{ flex: 3 }}>
                     <Text weight={selectedSong === song.id ? "600" : "normal"}>
                       {song.title}
                     </Text>
-                    <Text size="13" style={{ color: "#6b7280" }}>
+                    <Text size="13" variant="muted">
                       {song.artist}
                     </Text>
                   </VStack>
-                  <Text size="13" style={{ flex: 2, color: "#6b7280" }}>
+                  <Text size="13" style={{ flex: 2 }}>
                     {song.album}
                   </Text>
                   <Text
                     size="13"
-                    style={{ flex: 1, textAlign: "right", color: "#6b7280" }}
+                    variant="muted"
+                    style={{ flex: 1, textAlign: "right" }}
                   >
                     {song.duration}
                   </Text>
                   <Button
+                    label={`Star song ${song.title}`}
                     icon={song.isFavorite ? starFilled : starEmpty}
                     variant="tertiary"
                     onClick={(e: MouseEvent<HTMLElement>) => {
