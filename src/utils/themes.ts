@@ -11,13 +11,13 @@ export interface Theme {
 
 export const themes: Theme[] = [
   {
-    name: "Default",
-    slug: "default",
+    name: "Modern",
+    slug: "modern",
     group: "core",
   },
   {
-    name: "Modern",
-    slug: "modern",
+    name: "Classic",
+    slug: "classic",
     group: "core",
   },
   {
