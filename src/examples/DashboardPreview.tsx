@@ -33,7 +33,7 @@ const barChartData = {
   datasets: [
     {
       data: [65, 59, 80, 81, 56, 55],
-      backgroundColor: "#0073aa",
+      backgroundColor: "#3858e9",
     },
   ],
 };
@@ -43,7 +43,7 @@ const lineChartData = {
   datasets: [
     {
       data: [12, 19, 3, 5, 2, 3, 9],
-      borderColor: "#0073aa",
+      borderColor: "#3858e9",
       fill: false,
     },
   ],
